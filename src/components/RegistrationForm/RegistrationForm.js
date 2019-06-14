@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Input, Required } from '../Utils/Utils'
+import { Button, Input } from '../Utils/Utils'
 import AuthApiService from '../../services/auth-api-service'
 
 class RegistrationForm extends Component {
@@ -41,7 +41,7 @@ class RegistrationForm extends Component {
               type="text"
               id="register_username"
               name="username"
-              required /> <Required />
+              required />
         </div>
 
         <div className="password">
@@ -50,7 +50,7 @@ class RegistrationForm extends Component {
               type="password"
               id="register_password"
               name="register_password"
-              required /> <Required />
+              required />
         </div>
 
         <div className="nickname">
@@ -59,7 +59,7 @@ class RegistrationForm extends Component {
               type="text"
               id="register_nickname"
               name="register_nickname"
-              required /> <Required />
+              required />
         </div>
 
         <Button type="submit">Create My Account</Button>

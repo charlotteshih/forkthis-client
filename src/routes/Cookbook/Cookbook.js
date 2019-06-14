@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Cookbook extends Component {
   render() {
     return (
-      <p>klsdflkdsj</p>
+      <p>This is the cookbook page!</p>
     )
   }
 }

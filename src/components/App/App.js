@@ -6,6 +6,7 @@ import Header from '../Header/Header'
 import MainNav from '../MainNav/MainNav'
 import MainBlurb from '../MainBlurb/MainBlurb'
 import Footer from '../Footer/Footer'
+import PageNotFound from '../../routes/PageNotFound/PageNotFound'
 
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import LoginPage from '../../routes/LoginPage/LoginPage'
@@ -21,9 +22,13 @@ class App extends Component {
         <Header />
         <MainNav />
         <Switch>
-          <Route
+          <PublicOnlyRoute
             exact path={'/'}
             component={MainBlurb} />
+
+          <PrivateRoute
+              exact path={'/'}
+              component={Cookbook} />
 
           <PublicOnlyRoute
             path={'/login'}
@@ -32,10 +37,9 @@ class App extends Component {
           <PublicOnlyRoute
             path={'/register'}
             component={RegistrationPage} />
-
-          <PrivateRoute
-            path={'/cookbook'}
-            component={Cookbook} />
+          
+          <Route
+            component={PageNotFound} />
         </Switch>
         <Footer />
       </main>
