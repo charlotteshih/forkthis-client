@@ -8,7 +8,11 @@ class LoginForm extends Component {
     onLoginSuccess: () => {}
   }
 
-  state = { error: null }
+  state = {
+    username: '',
+    password: '',
+    error: null
+  }
 
   handleSubmitJwtAuth = e => {
     e.preventDefault()

@@ -8,12 +8,13 @@ import MainBlurb from '../MainBlurb/MainBlurb'
 import Footer from '../Footer/Footer'
 import PageNotFound from '../../routes/PageNotFound/PageNotFound'
 
-import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
+// import PublicOnlyRoute from '../Utils/PublicOnlyRoute'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 
-import PrivateRoute from '../Utils/PrivateRoute'
+// import PrivateRoute from '../Utils/PrivateRoute'
 import Cookbook from '../../routes/Cookbook/Cookbook'
+import RecipePage from '../../routes/RecipePage/RecipePage'
 
 class App extends Component {
   render() {
@@ -22,22 +23,26 @@ class App extends Component {
         <Header />
         <MainNav />
         <Switch>
-          <PublicOnlyRoute
+          <Route
             exact path={'/'}
             component={MainBlurb} />
 
-          <PrivateRoute
-              exact path={'/'}
-              component={Cookbook} />
-
-          <PublicOnlyRoute
+          <Route
             path={'/login'}
             component={LoginPage} />
 
-          <PublicOnlyRoute
+          <Route
             path={'/register'}
             component={RegistrationPage} />
-          
+
+          <Route
+            path={'/cookbook'}
+            component={Cookbook} />
+
+          <Route
+            path={'/recipe-page'}
+            component={RecipePage} />
+            
           <Route
             component={PageNotFound} />
         </Switch>

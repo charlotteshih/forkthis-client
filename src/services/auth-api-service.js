@@ -1,10 +1,9 @@
 import config from '../config'
-// import dummyUsers from '../dummyData/dummyUsers'
 
 const AuthApiService = {
   postLogin({ username, password }) {
+    
     return fetch(`${config.API_ENDPOINT}/authorization/login`, {
-    // return fetch(dummyUsers, {
       method: `POST`,
       headers: {
         'Content-type': 'Application/json'
@@ -19,7 +18,6 @@ const AuthApiService = {
   },
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
-      // return fetch(dummyUsers, {
       method: `POST`,
       headers: {
         'Content-type': 'Application/json'

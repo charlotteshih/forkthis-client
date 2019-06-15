@@ -1,11 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
+// import { Route } from 'react-router-dom'
+import { Section } from '../../components/Utils/Utils'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import RecipeList from '../../components/RecipeList/RecipeList'
+import './Cookbook.css'
 
-class Cookbook extends Component {
-  render() {
-    return (
-      <p>This is the cookbook page!</p>
-    )
-  }
+function Cookbook() {
+  return (
+    <>
+      <h2>Your Cookbook</h2>
+      <Section className="cookbook">
+        <Sidebar />
+        <RecipeList />
+      </Section>
+    </>
+  )
 }
 
 export default Cookbook

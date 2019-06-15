@@ -1,0 +1,12 @@
+.recipe-ingredients {
+  width: 20%;
+
+  outline: 1px solid green;
+}
+
+.recipe-steps {
+  position: relative;
+  width: 80%;
+
+  outline: 1px solid teal;
+}

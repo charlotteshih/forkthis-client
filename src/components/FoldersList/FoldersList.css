@@ -1,0 +1,4 @@
+.folder-item:hover {
+  cursor: pointer;
+  color: red;
+}

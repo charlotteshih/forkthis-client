@@ -1,0 +1,8 @@
+.recipe-card {
+  width: 300px;
+  margin: 30px;
+  margin-top: 60px;
+  padding: 30px;
+
+  outline: 1px solid turquoise;
+}
