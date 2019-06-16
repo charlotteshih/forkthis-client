@@ -4,15 +4,36 @@ let recipes = [
     name: 'Pecan Pie',
     folder_id: 4,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
   {
@@ -20,15 +41,36 @@ let recipes = [
     name: 'Chocolate Chip Cookies',
     folder_id: 4,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
   {
@@ -36,15 +78,36 @@ let recipes = [
     name: 'Chili',
     folder_id: 3,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
   {
@@ -52,15 +115,36 @@ let recipes = [
     name: 'Pasta Salad',
     folder_id: 2,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
   {
@@ -68,15 +152,36 @@ let recipes = [
     name: 'Spam Fried Rice',
     folder_id: 3,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
   {
@@ -84,15 +189,36 @@ let recipes = [
     name: 'Scrambled Eggs',
     folder_id: 1,
     ingredients: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
+      {
+        id: 1,
+        item: 'Item 1'
+      },
+      {
+        id: 2,
+        item: 'Item 2'
+      },
+      {
+        id: 3,
+        item: 'Item 3'
+      },
     ],
     steps: [
-      'Step 1',
-      'Step 2',
-      'Step 3',
-      'Step 4',
+      {
+        id: 1,
+        step: 'Step 1'
+      },
+      {
+        id: 2,
+        step: 'Step 2'
+      },
+      {
+        id: 3,
+        step: 'Step 3'
+      },
+      {
+        id: 4,
+        step: 'Step 4'
+      },
     ]
   },
 ]

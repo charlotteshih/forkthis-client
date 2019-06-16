@@ -15,8 +15,11 @@ class RecipeCard extends Component {
         {
           this.state.recipes.map(recipe => {
             return (
-              <Section className="recipe-card" key={recipe.id}>
-                <h3><Link to={`/recipe-page`}>{recipe.name}</Link></h3>
+              <Section
+                recipe={recipe}
+                className="recipe-card"
+                key={recipe.id}>
+                <h3><Link to={`recipe/${recipe.id}`}>{recipe.name}</Link></h3>
                 <p>Folder: {recipe.folder_id}</p>
               </Section>
             )

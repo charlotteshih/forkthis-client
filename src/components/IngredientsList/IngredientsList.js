@@ -1,26 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import recipes from '../../dummyData/dummyRecipes'
 
-class FoldersList extends Component {
-  state = {
-    recipes
-  }
+function IngredientsList(props) {
 
-  render() {
-    return (
-      <ul>
-        {
-          this.state.recipes[0].ingredients.map(ing => {
-            return (
-              <li className="folder-item">
-                {ing}
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
-  }
+  return (
+    <ul>
+      {
+        recipes[props.recipeId].ingredients.map(ing => {
+          return (
+            <li key={ing.id}>
+              {ing.item}
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
 }
 
-export default FoldersList
+export default IngredientsList
