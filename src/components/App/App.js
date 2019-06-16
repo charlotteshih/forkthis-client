@@ -13,6 +13,7 @@ import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 
 import Cookbook from '../../routes/Cookbook/Cookbook'
 import RecipePage from '../../routes/RecipePage/RecipePage'
+import AddRecipe from '../../routes/AddRecipe/AddRecipe'
 
 import folders from '../../dummyData/dummyFolders'
 import recipes from '../../dummyData/dummyRecipes'
@@ -49,6 +50,10 @@ class App extends Component {
             <Route
               path={'/recipe/:recipeId'}
               render={routeProps => <RecipePage {...routeProps} />} />
+            
+            <Route
+              path={'/add-recipe'}
+              component={AddRecipe} />
             
             <Route component={PageNotFound} />
           </Switch>
