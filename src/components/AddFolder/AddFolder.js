@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Input, Button } from '../Utils/Utils'
+import RecipeContext from '../../contexts/RecipeContext';
 
 class AddFolder extends Component {
+  static contextType = RecipeContext
+
   state = {
     folderName: ''
   }
@@ -12,17 +15,17 @@ class AddFolder extends Component {
     })
   }
 
-  // clearForm = () => {
-  //   this.setState({
-  //     folderName: ''
-  //   })
-  // }
+  clearForm = () => {
+    this.setState({
+      folderName: ''
+    })
+  }
 
   handleCreateNewFolder = e => {
     e.preventDefault()
-    console.log(this.state.folderName)
-    this.props.addFolder(this.state)
-    // this.clearForm()
+    console.log(this.state.folderName.trim())
+    this.context.addNewFolder(this.state.folderName.trim())
+    this.clearForm()
   }
 
   render() {  
@@ -38,7 +41,7 @@ class AddFolder extends Component {
           name="add_folder"
           placeholder="Add Folder"
           required />
-        <Button type="submit">Add</Button>
+        <Button disabled={this.state.folderName === ''} type="submit">Add</Button>
       </form>
     )
   }

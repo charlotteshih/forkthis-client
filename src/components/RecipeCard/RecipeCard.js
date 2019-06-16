@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Section } from '../Utils/Utils'
-import recipes from '../../dummyData/dummyRecipes'
 import './RecipeCard.css'
+import RecipeContext from '../../contexts/RecipeContext';
 
 class RecipeCard extends Component {
-  state = {
-    recipes
-  }
+  static contextType = RecipeContext
 
   render() {
     return (
       <>
         {
-          this.state.recipes.map(recipe => {
+          this.context.recipes.map(recipe => {
             return (
               <Section
                 recipe={recipe}

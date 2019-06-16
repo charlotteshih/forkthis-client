@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import RecipeContext from '../../contexts/RecipeContext'
 import './App.css'
 
 import Header from '../Header/Header'
@@ -25,13 +24,8 @@ class App extends Component {
   }
 
   render() {
-    const context = {
-      folders: this.state.folders,
-      recipes: this.state.recipes
-    }
-    
+
     return (
-      <RecipeContext.Provider value={(context)}>
         <main className="App">
           <Header />
           <MainNav />
@@ -43,27 +37,25 @@ class App extends Component {
             <Route
               path={'/login'}
               component={LoginPage} />
-
+            
             <Route
               path={'/register'}
               component={RegistrationPage} />
-
+            
             <Route
               path={'/cookbook'}
               component={Cookbook} />
-
+            
             <Route
               path={'/recipe/:recipeId'}
               render={routeProps => <RecipePage {...routeProps} />} />
-              
-            <Route
-              component={PageNotFound} />
+            
+            <Route component={PageNotFound} />
           </Switch>
           <Footer />
         </main>
-      </RecipeContext.Provider>
-    );
+    )
   }
 }
 
-export default App;
+export default App
