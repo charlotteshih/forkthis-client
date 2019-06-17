@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Input } from '../Utils/Utils'
 import RecipeContext from '../../contexts/RecipeContext'
-import FolderDropDown from '../FolderDropDown/FolderDropDown'
+import { Button, Input } from '../Utils/Utils'
 import './AddRecipeForm.css'
+
+import FolderDropDown from '../FolderDropDown/FolderDropDown'
 
 class AddRecipeForm extends Component {
 	static contextType = RecipeContext

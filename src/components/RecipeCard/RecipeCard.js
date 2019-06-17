@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Section } from '../Utils/Utils'
+import RecipeContext from '../../contexts/RecipeContext'
 import './RecipeCard.css'
-import RecipeContext from '../../contexts/RecipeContext';
 
 class RecipeCard extends Component {
   static contextType = RecipeContext

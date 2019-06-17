@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Section } from '../Utils/Utils'
+import './Sidebar.css'
+
 import AddFolder from '../AddFolder/AddFolder'
 import FoldersList from '../FoldersList/FoldersList'
-import './Sidebar.css'
 
 class Sidebar extends Component {
   render() {

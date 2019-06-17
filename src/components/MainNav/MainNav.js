@@ -1,17 +1,15 @@
-import React,  { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './MainNav.css'
 
-class MainNav extends Component {
-  render() {
-    return (
-      <nav>
-        <Link className="cta-btn" to="/login">Log In</Link>
-        <Link className="cta-btn" to="/register">Register</Link>
-        <Link className="cta-btn" to="/cookbook">Demo</Link>
-      </nav>
-    )
-  }
+function MainNav() {
+  return (
+    <nav>
+      <Link className="cta-btn" to="/login">Log In</Link>
+      <Link className="cta-btn" to="/register">Register</Link>
+      <Link className="cta-btn" to="/cookbook">Demo</Link>
+    </nav>
+  )
 }
 
 export default MainNav

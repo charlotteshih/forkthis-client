@@ -1,8 +1,9 @@
 import React from 'react'
 import { Section } from '../../components/Utils/Utils'
+import './AddRecipe.css'
+
 import BackButton from '../../components/BackButton/BackButton'
 import AddRecipeForm from '../../components/AddRecipeForm/AddRecipeForm'
-import './AddRecipe.css'
 
 function AddRecipe(props) {
 	let history = props.history

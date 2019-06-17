@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import LoginForm from '../../components/LoginForm/LoginForm'
 import { Section } from '../../components/Utils/Utils'
 import './LoginPage.css'
+
+import LoginForm from '../../components/LoginForm/LoginForm'
 
 class LoginPage extends Component {
   static defaultProps = {

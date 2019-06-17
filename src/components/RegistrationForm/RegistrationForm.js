@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Input } from '../Utils/Utils'
+
 import AuthApiService from '../../services/auth-api-service'
 
 class RegistrationForm extends Component {

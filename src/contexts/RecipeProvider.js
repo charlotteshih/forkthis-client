@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RecipeContext from './RecipeContext'
+
 import folders from '../dummyData/dummyFolders'
 import recipes from '../dummyData/dummyRecipes'
 

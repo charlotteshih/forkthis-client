@@ -1,8 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Section } from '../Utils/Utils'
-import RecipeCard from '../RecipeCard/RecipeCard'
 import './RecipeList.css'
+
+import RecipeCard from '../RecipeCard/RecipeCard'
 
 function RecipeList() {
   return (

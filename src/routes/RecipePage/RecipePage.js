@@ -1,10 +1,12 @@
 import React from 'react'
 import { Section } from '../../components/Utils/Utils'
+import '../Cookbook/Cookbook.css'
+import './RecipePage.css'
+
 import BackButton from '../../components/BackButton/BackButton'
 import IngredientsList from '../../components/IngredientsList/IngredientsList'
 import StepsList from '../../components/StepsList/StepsList'
-import '../Cookbook/Cookbook.css'
-import './RecipePage.css'
+
 import recipes from '../../dummyData/dummyRecipes'
 
 function RecipePage(props) {

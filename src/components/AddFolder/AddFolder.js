@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Button } from '../Utils/Utils'
-import RecipeContext from '../../contexts/RecipeContext';
+import RecipeContext from '../../contexts/RecipeContext'
 
 class AddFolder extends Component {
   static contextType = RecipeContext

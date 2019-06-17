@@ -2,7 +2,6 @@ import React from 'react'
 import recipes from '../../dummyData/dummyRecipes'
 
 function FoldersList(props) {
-
   return (
     <ol>
       {

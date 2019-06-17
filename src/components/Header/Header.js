@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
 
-function Header () {
+function Header() {
   return (
     <header>
       <h1><Link className="headLink" to="/">Fork This!</Link></h1>
