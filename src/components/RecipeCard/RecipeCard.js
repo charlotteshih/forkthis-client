@@ -18,7 +18,17 @@ class RecipeCard extends Component {
                 className="recipe-card"
                 key={recipe.id}>
                 <h3><Link to={`recipe/${recipe.id}`}>{recipe.name}</Link></h3>
-                <p>Folder: {recipe.folder_id}</p>
+                <p>
+                  Folder:&nbsp;
+                  {
+                    this.context.folders.filter(folder => {
+                      return folder.id === recipe.folder_id
+                    })
+                      .map(folder => {
+                        return folder.folderName
+                      })
+                  }
+                </p>
               </Section>
             )
           })

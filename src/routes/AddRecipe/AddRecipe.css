@@ -1,0 +1,8 @@
+.add-recipe-wrapper {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  
+    outline: 1px solid green;
+  }
