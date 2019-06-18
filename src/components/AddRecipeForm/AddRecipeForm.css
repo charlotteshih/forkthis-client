@@ -18,3 +18,9 @@
     padding: 5px;
     margin-bottom: 5px;
 }
+
+.folder-dropdown {
+	width: 100%;
+	padding: 5px;
+	font-size: 0.9rem;
+}
