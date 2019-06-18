@@ -55,14 +55,22 @@ class AddRecipeForm extends Component {
 		let ing_id = e.target.id
 		let ing_item = e.target.value
 
-		this.setState({
-			ingredients: [
-				{
-					id: ing_id,
-					item: ing_item
-				}
-			]
+		let newIng = this.state.ingredients.find(item => {
+			return item.id === parseInt(ing_id)
 		})
+		
+		newIng.item = ing_item
+	}
+
+	handleStepInput = e => {
+		let step_id = e.target.id
+		let step_item = e.target.value
+
+		let newStep = this.state.steps.find(step => {
+			return step.id === parseInt(step_id)
+		})
+		
+		newStep.step = step_item
 	}
 
 	addIngredientInput = e => {
@@ -93,13 +101,42 @@ class AddRecipeForm extends Component {
 
 	clearForm = () => {
     this.setState({
-      folderName: ''
+			title: '',
+			ingredients: [
+				{
+					id: 1,
+					item: ''
+				},
+				{
+					id: 2,
+					item: ''
+				},
+				{
+					id: 3,
+					item: ''
+				}
+			],
+			steps: [
+				{
+					id: 1,
+					step: ''
+				},
+				{
+					id: 2,
+					step: ''
+				},
+				{
+					id: 3,
+					step: ''
+				}
+			],
+			folder_id: '',
     })
   }
 
 	handleSubmitRecipe = e => {
 		e.preventDefault()
-		console.log(this.state)
+		// console.log(this.state)
 		this.clearForm()
 	}
 
@@ -126,11 +163,10 @@ class AddRecipeForm extends Component {
 					{
 						ingredients.map(ing => {
 							return (
-								<li>
+								<li key={ing.id}>
 									<Input
 										onChange={this.handleIngredientInput}
 										type="text"
-										key={ing.id}
 										id={`${ing.id}`}
 										name="recipe_ingredients" />
 								</li>
@@ -151,10 +187,10 @@ class AddRecipeForm extends Component {
 					{
 						steps.map(step => {
 							return (
-								<li>
+								<li key={step.id}>
 									<Input
+										onChange={this.handleStepInput}
 										type="text"
-										key={step.id}
 										id={`${step.id}`}
 										name="recipe_steps" />
 								</li>

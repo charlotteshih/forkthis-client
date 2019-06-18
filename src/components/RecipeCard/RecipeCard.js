@@ -4,6 +4,8 @@ import { Section } from '../Utils/Utils'
 import RecipeContext from '../../contexts/RecipeContext'
 import './RecipeCard.css'
 
+import EditDelete from '../EditDelete/EditDelete'
+
 class RecipeCard extends Component {
   static contextType = RecipeContext
 
@@ -29,6 +31,7 @@ class RecipeCard extends Component {
                       })
                   }
                 </p>
+                <EditDelete />
               </Section>
             )
           })
