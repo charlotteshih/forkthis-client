@@ -9,7 +9,7 @@ function RecipeList() {
   return (
     <Section className="recipe-list">
       <Section className="add-recipe">
-          <Link className="add-recipe=btn" to='/add-recipe'>+ Add Recipe</Link>
+          <Link className="add-recipe-btn" to='/add-recipe'>+ Add Recipe</Link>
       </Section>
       <RecipeCard />
     </Section>

@@ -6,14 +6,15 @@ import './EditDelete.css'
 class EditDelete extends Component {
   static contextType = RecipeContext
 
-  handleDelete = e => {
-    // e.preventDefault()
-    console.log(e.target.class)
-    this.context.recipes.filter(recipe => {
-      return recipe.id !== e.target.id
+  handleDelete = recipeId => {
+    console.log(recipeId)
+    this.setState({
+      recipes: [
+        this.context.recipes.filter(recipe => recipe.id !== recipeId)
+      ]
     })
   }
-
+  
   render() {
     return (
       <Section className="edit-delete">
@@ -22,7 +23,7 @@ class EditDelete extends Component {
           Edit
         </Button>
         <Button
-          onClick={e => this.handleDelete(e)}
+          onClick={() => this.handleDelete(this.props.recipe.id)}
           className="delete-button">
           Delete
         </Button>

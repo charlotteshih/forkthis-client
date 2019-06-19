@@ -1,20 +1,19 @@
 import React from 'react'
+import '../IngredientsList/IngredientsList.css'
 import recipes from '../../dummyData/dummyRecipes'
 
-function FoldersList(props) {
+function StepsList(props) {
   return (
     <ol>
-      {
-        recipes[props.recipeId].steps.map(step => {
+      {recipes[props.recipeId].steps.map(step => {
           return (
-            <li key={step.id}>
-              {step.step}
-            </li>
+            step.step.length > 1
+            ? <li key={step.id}>{step.step}</li>
+            : <li className="blank-li" key={step.id}></li>
           )
-        })
-      }
+        })}
     </ol>
   )
 }
 
-export default FoldersList
+export default StepsList

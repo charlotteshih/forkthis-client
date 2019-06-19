@@ -7,7 +7,8 @@ class AddRecipeForm extends Component {
 	static contextType = RecipeContext
 
 	state = {
-		title: '',
+		id: '',
+		name: '',
 		ingredients: [
 			{
 				id: 1,
@@ -39,35 +40,36 @@ class AddRecipeForm extends Component {
 		folder_id: '',
 	}
 
-	handleTitleChange = e => {
+	handleNameChange = e => {
 		this.setState({
-			title: e.target.value.trim()
+			id: this.context.recipes.length + 1,
+			name: e.target.value.trim()
 		})
 	}
 
 	handleSelectFolder = e => {
 		this.setState({
-			folder_id: e.target.value
+			folder_id: parseInt(e.target.value)
 		})
 	}
 
 	handleIngredientInput = e => {
-		let ing_id = e.target.id
-		let ing_item = e.target.value
+		let ing_id = parseInt(e.target.id)
+		let ing_item = e.target.value.trim()
 
 		let newIng = this.state.ingredients.find(item => {
-			return item.id === parseInt(ing_id)
+			return item.id === ing_id
 		})
 		
 		newIng.item = ing_item
 	}
 
 	handleStepInput = e => {
-		let step_id = e.target.id
-		let step_item = e.target.value
+		let step_id = parseInt(e.target.id)
+		let step_item = e.target.value.trim()
 
 		let newStep = this.state.steps.find(step => {
-			return step.id === parseInt(step_id)
+			return step.id === step_id
 		})
 		
 		newStep.step = step_item
@@ -99,9 +101,16 @@ class AddRecipeForm extends Component {
 		}))
 	}
 
+	handleSubmitRecipe = e => {
+		e.preventDefault()
+		this.context.postNewRecipe(this.state)
+		this.clearForm()
+	}
+
 	clearForm = () => {
     this.setState({
-			title: '',
+			id: '',
+			name: '',
 			ingredients: [
 				{
 					id: 1,
@@ -134,12 +143,6 @@ class AddRecipeForm extends Component {
     })
   }
 
-	handleSubmitRecipe = e => {
-		e.preventDefault()
-		// console.log(this.state)
-		this.clearForm()
-	}
-
 	render() {
 		let { ingredients, steps } = this.state
 
@@ -147,13 +150,13 @@ class AddRecipeForm extends Component {
 			<form
 				className="add-recipe-form"
 				onSubmit={this.handleSubmitRecipe}>
-				<div className="title">
-					<label htmlFor="title">Title: </label>
+				<div className="name">
+					<label htmlFor="name">Name: </label>
 					<Input
-						onChange={this.handleTitleChange}
+						onChange={this.handleNameChange}
 						type="text"
-						id="recipe_title"
-						name="recipe_title"
+						id="recipe_name"
+						name="recipe_name"
 						required />
 				</div>
 

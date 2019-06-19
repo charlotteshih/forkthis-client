@@ -17,13 +17,13 @@ function RecipePage(props) {
     <Section className="cookbook">
       <Section className="recipe-ingredients">
         <h2>Ingredients</h2>
-        <IngredientsList recipeId={recipeId} />
+        <IngredientsList recipeId={recipeId - 1} />
       </Section>
       <Section className="recipe-steps">
         <BackButton history={history} />
-        <h2>{recipes[recipeId -1].name}</h2>
+        <h2>{recipes[recipeId - 1].name}</h2>
         <h2>Steps</h2>
-        <StepsList recipeId={recipeId} />
+        <StepsList recipeId={recipeId - 1} />
       </Section>
     </Section>
   )

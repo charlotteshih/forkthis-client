@@ -51,7 +51,7 @@ let recipes = [
       },
       {
         id: 3,
-        item: 'Item 3'
+        item: ''
       },
     ],
     steps: [

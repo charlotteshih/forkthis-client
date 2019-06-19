@@ -4,7 +4,7 @@ import { Section } from '../Utils/Utils'
 import RecipeContext from '../../contexts/RecipeContext'
 import './RecipeCard.css'
 
-import EditDelete from '../EditDelete/EditDelete'
+// import EditDelete from '../EditDelete/EditDelete'
 
 class RecipeCard extends Component {
   static contextType = RecipeContext
@@ -23,15 +23,12 @@ class RecipeCard extends Component {
                 <p>
                   Folder:&nbsp;
                   {
-                    this.context.folders.filter(folder => {
-                      return folder.id === recipe.folder_id
-                    })
-                      .map(folder => {
-                        return folder.folderName
-                      })
+                    this.context.folders
+                      .filter(folder => folder.id === recipe.folder_id)
+                      .map(folder => folder.folderName)
                   }
                 </p>
-                <EditDelete />
+                {/* <EditDelete recipe={recipe} /> */}
               </Section>
             )
           })
