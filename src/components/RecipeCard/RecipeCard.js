@@ -8,8 +8,10 @@ import './RecipeCard.css'
 
 class RecipeCard extends Component {
   static contextType = RecipeContext
-
+  
   render() {
+    // console.log('this.context', this.context)
+
     return (
       <>
         {

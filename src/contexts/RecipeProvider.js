@@ -20,14 +20,17 @@ export default class RecipeProvider extends Component {
 		})
 	}
 
-	componentDidUpdate(prevState) {
-		if(this.state.recipes !== prevState.recipes) {
-			// "maximum update depth exceeded"
-			console.log('what the fuck')
-		}
-	}
+	// componentDidUpdate(prevState) {
+		// if(this.state.recipes !== prevState.recipes) {
+			// "maximum update depth exceeded" if i use this.setState()
+			// console.log('this.state', this.state)
+			// console.log('prevState', prevState)
+		// }
+	// }
 
 	filterFolders = id => {
+		console.log(id)
+		console.log(this.state)
 		// filtering folders currently deletes added recipes
 		this.setState({
 			recipes: id === null
@@ -50,20 +53,14 @@ export default class RecipeProvider extends Component {
 	}
 
 	postNewRecipe = newRecipe => {
-		console.log('new recipe added!', newRecipe)
-		const { recipes } = this.state
-		this.setState({
-			recipes: [
-				...recipes,
-				newRecipe
-			]
-		})
-		console.log('recipe list', this.state.recipes)
-		setTimeout(console.log('recipe list again', this.state.recipes), 5000)
-		// console.log does not return updated state
-		// so link to new recipe doesn't work b/c no state
+		const recipes = [...this.state.recipes]
+		recipes.push(newRecipe)
 
-		// but react devtools shows updated state????????
+		this.setState(() => ({
+			recipes: [
+				...recipes
+			]
+		}))
 	}
   
 	render() {
@@ -72,9 +69,7 @@ export default class RecipeProvider extends Component {
 			recipes: this.state.recipes,
 			filterFolders: this.filterFolders,
 			addNewFolder: this.addNewFolder,
-			postNewRecipe: this.postNewRecipe,
-			setError: this.setError,
-			clearError: this.clearError,
+			postNewRecipe: this.postNewRecipe
 		}
 		return (
 			<RecipeContext.Provider value={context}>
