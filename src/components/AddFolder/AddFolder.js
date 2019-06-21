@@ -23,7 +23,7 @@ class AddFolder extends Component {
 
   handleCreateNewFolder = e => {
     e.preventDefault()
-    this.context.addNewFolder(this.state.folderName.trim())
+    this.context.postNewFolder(this.state.folderName.trim())
     this.clearForm()
   }
 

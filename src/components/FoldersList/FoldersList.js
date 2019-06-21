@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RecipeContext from '../../contexts/RecipeContext'
+import { Button } from '../Utils/Utils'
 import './FoldersList.css'
 
 class FoldersList extends Component {
@@ -9,22 +10,22 @@ class FoldersList extends Component {
     const { folders, filterFolders } = this.context;
 
     return (
-      <ul>
-        <li className="folder-item" onClick={() => filterFolders(null)}>View All</li>
+      <>
+        <Button className="folder-item" onClick={() => filterFolders(null)}>View All</Button>
         {
           folders.map(folder => {
             return (
-              <li
+              <Button
                 className="folder-item"
                 onClick={() => filterFolders(folder.id)}
                 key={folder.id}
                 value={folder.folderName}>
                 {folder.folderName}
-              </li>
+              </Button>
             )
           })
         }
-      </ul>
+      </>
     )
   }
 }
