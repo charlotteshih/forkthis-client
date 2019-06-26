@@ -6,24 +6,24 @@ class AddFolder extends Component {
   static contextType = RecipeContext
 
   state = {
-    folderName: ''
+    folder_name: ''
   }
 
   handleChange = e => {
     this.setState({
-      folderName: e.target.value
+      folder_name: e.target.value
     })
   }
 
   clearForm = () => {
     this.setState({
-      folderName: ''
+      folder_name: ''
     })
   }
 
   handleCreateNewFolder = e => {
     e.preventDefault()
-    this.context.postNewFolder(this.state.folderName.trim())
+    this.context.postNewFolder(this.state.folder_name.trim())
     this.clearForm()
   }
 
@@ -40,7 +40,7 @@ class AddFolder extends Component {
           name="add_folder"
           placeholder="Add Folder"
           required />
-        <Button disabled={this.state.folderName === ''} type="submit">Add</Button>
+        <Button disabled={this.state.folder_name === ''} type="submit">Add</Button>
       </form>
     )
   }

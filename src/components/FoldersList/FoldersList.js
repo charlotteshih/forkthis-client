@@ -19,8 +19,8 @@ class FoldersList extends Component {
                 className="folder-item"
                 onClick={() => filterFolders(folder.id)}
                 key={folder.id}
-                value={folder.folderName}>
-                {folder.folderName}
+                value={folder.folder_name}>
+                {folder.folder_name}
               </Button>
             )
           })

@@ -160,6 +160,24 @@ class AddRecipeForm extends Component {
 						required />
 				</div>
 
+				<div className="folders">
+					<label htmlFor="folders">Folder: </label>
+					<select className="folder-dropdown" onChange={this.handleSelectFolder}>
+						<option>Please Select a Folder...</option>
+						{
+							this.context.folders.map(folder => {
+								return (
+									<option
+										key={folder.id}
+										value={`${folder.id}`}>
+										{folder.folder_name}
+									</option>
+								)
+							})
+						}
+					</select>
+				</div>
+
 				<div className="ingredients">
 					<label htmlFor="ingredients">Ingredients: </label>
 					<ul>
@@ -206,24 +224,6 @@ class AddRecipeForm extends Component {
 						className="add-step-button">
 						+ Add Step
 					</Button>
-				</div>
-
-				<div className="folders">
-					<label htmlFor="folders">Folder: </label>
-					<select className="folder-dropdown" onChange={this.handleSelectFolder}>
-						<option>Please Select a Folder...</option>
-						{
-							this.context.folders.map(folder => {
-								return (
-									<option
-										key={folder.id}
-										value={`${folder.id}`}>
-										{folder.folderName}
-									</option>
-								)
-							})
-						}
-					</select>
 				</div>
 
 				<Button type="submit">

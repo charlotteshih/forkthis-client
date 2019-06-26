@@ -27,7 +27,7 @@ class RecipeCard extends Component {
                   {
                     this.context.folders
                       .filter(folder => folder.id === recipe.folder_id)
-                      .map(folder => folder.folderName)
+                      .map(folder => folder.folder_name)
                   }
                 </p>
                 {/* <EditDelete recipe={recipe} /> */}

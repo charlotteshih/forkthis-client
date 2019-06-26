@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import RecipeContext from './RecipeContext'
+import config from '../config'
 
-import folders from '../dummyData/dummyFolders'
 import recipes from '../dummyData/dummyRecipes'
 
 export default class RecipeProvider extends Component {
@@ -14,10 +14,15 @@ export default class RecipeProvider extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			folders,
-			recipes,
-		})
+		fetch(config.API_ENDPOINT + `/folders`)
+			.then(response => response.json())
+			.then(responseJson => {
+				this.setState({
+					folders: responseJson
+				})
+			})
+
+		this.setState({ recipes })
 	}
 
 	// componentDidUpdate(prevProps, prevState) {
@@ -42,12 +47,12 @@ export default class RecipeProvider extends Component {
 		})
 	}
 
-	postNewFolder = folderName => {
+	postNewFolder = folder_name => {
 		const folders = [...this.state.folders]
 
 		folders.push({
 			id: folders.length + 1,
-			folderName
+			folder_name
 		})
 
 		this.setState({
