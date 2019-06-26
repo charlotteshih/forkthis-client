@@ -4,7 +4,7 @@ import config from '../config'
 
 import recipes from '../dummyData/dummyRecipes'
 
-export default class RecipeProvider extends Component {
+class RecipeProvider extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -25,21 +25,24 @@ export default class RecipeProvider extends Component {
 		this.setState({ recipes })
 	}
 
-	// componentDidUpdate(prevProps, prevState) {
-	// 	if(this.state.recipes !== prevState.recipes) {
-	// 		this.setState({
-	// 			folders,
-	// 			recipes
-	// 		})
-	// 		console.log('this.state', this.state)
-	// 		console.log('prevState', prevState)
-	// 	}
-	// }
+	componentDidUpdate(prevState) {
+		if (this.state.folders !== prevState.folders) {
+			fetch(config.API_ENDPOINT + `/folders`)
+				.then(response => response.json())
+				.then(responseJson => {
+					this.setState({
+						folders: responseJson
+					})
+				})
+		}
+	}
 
 	filterFolders = id => {
 		// console.log(id)
 		// console.log(this.state)
 		// filtering folders currently deletes added recipes
+		// i think this is because the recipes are only stored in local state
+		// should be fixed once i have a working backend
 		this.setState({
 			recipes: id === null
 			? recipes
@@ -48,22 +51,31 @@ export default class RecipeProvider extends Component {
 	}
 
 	postNewFolder = folder_name => {
-		const folders = [...this.state.folders]
-
-		folders.push({
-			id: folders.length + 1,
-			folder_name
+		fetch(config.API_ENDPOINT + `/folders`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
+			body: JSON.stringify({
+				folder_name
+			})
 		})
+		// const folders = [...this.state.folders]
 
-		this.setState({
-			folders: [
-				...folders
-			]
-		})
+		// folders.push({
+		// 	id: folders.length + 1,
+		// 	folder_name
+		// })
+
+		// this.setState({
+		// 	folders: [
+		// 		...folders
+		// 	]
+		// })
 	}
 
 	postNewRecipe = newRecipe => {
-		const recipes = [...this.state.recipes]
+		const recipes = [ ...this.state.recipes ]
 		recipes.push(newRecipe)
 
 		this.setState(() => ({
@@ -88,3 +100,5 @@ export default class RecipeProvider extends Component {
 		)
 	}
 }
+
+export default RecipeProvider
