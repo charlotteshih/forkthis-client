@@ -14,6 +14,7 @@ import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 
 import Cookbook from '../../routes/Cookbook/Cookbook'
 import RecipePage from '../../routes/RecipePage/RecipePage'
+// import FolderPage from '../../routes/FolderPage/FolderPage'
 import AddRecipe from '../../routes/AddRecipe/AddRecipe'
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
           <Route
             path={'/recipe/:recipeId'}
             render={routeProps => <RecipePage {...routeProps} />} />
+
+          {/* <Route
+            path={'/folder/:folderId'}
+            render={routeProps => <FolderPage {...routeProps} />} /> */}
           
           <Route
             path={'/add-recipe'}

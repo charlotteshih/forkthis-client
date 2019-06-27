@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import RecipeContext from './RecipeContext'
 import config from '../config'
 
-import recipes from '../dummyData/dummyRecipes'
-
 class RecipeProvider extends Component {
 	constructor(props) {
 		super(props)
@@ -22,33 +20,26 @@ class RecipeProvider extends Component {
 				})
 			})
 
-		this.setState({ recipes })
-	}
-
-	componentDidUpdate(prevState) {
-		if (this.state.folders !== prevState.folders) {
-			fetch(config.API_ENDPOINT + `/folders`)
-				.then(response => response.json())
-				.then(responseJson => {
-					this.setState({
-						folders: responseJson
-					})
+		fetch(config.API_ENDPOINT + `/recipes`)
+			.then(response => response.json())
+			.then(responseJson => {
+				this.setState({
+					recipes: responseJson
 				})
-		}
+			})
 	}
 
-	filterFolders = id => {
-		// console.log(id)
-		// console.log(this.state)
-		// filtering folders currently deletes added recipes
-		// i think this is because the recipes are only stored in local state
-		// should be fixed once i have a working backend
-		this.setState({
-			recipes: id === null
-			? recipes
-			: recipes.filter(recipe => id === recipe.folder_id)
-		})
-	}
+	// this doesn't work anymore. just have each folder button go to its own route
+	// filterFolders = id => {
+	// 	let recipes = this.state.recipes
+	// 	console.log(id)
+	// 	console.log(recipes)
+	// 	this.setState({
+	// 		recipes: id === null
+	// 		? recipes
+	// 		: recipes.find(recipe => id === recipe.folder_id)
+	// 	})
+	// }
 
 	postNewFolder = folder_name => {
 		fetch(config.API_ENDPOINT + `/folders`, {
@@ -60,27 +51,42 @@ class RecipeProvider extends Component {
 				folder_name
 			})
 		})
-		// const folders = [...this.state.folders]
+			.then(response => response.json())
+			.then(responseJson => this.addNewFolder(responseJson))
+			.catch()
+	}
 
-		// folders.push({
-		// 	id: folders.length + 1,
-		// 	folder_name
-		// })
-
-		// this.setState({
-		// 	folders: [
-		// 		...folders
-		// 	]
-		// })
+	addNewFolder = newFolder => {
+		const folders = [ ...this.state.folders ]
+		this.setState(() => ({
+			folders: [
+				...folders,
+				newFolder
+			]
+		}))
 	}
 
 	postNewRecipe = newRecipe => {
-		const recipes = [ ...this.state.recipes ]
-		recipes.push(newRecipe)
+		fetch(config.API_ENDPOINT + `/recipes`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
+			body: JSON.stringify({
+				newRecipe,
+			})
+		})
+			.then(response => response.json())
+			.then(responseJson => this.addNewRecipe(responseJson))
+			.catch()
+	}
 
+	addNewRecipe = newRecipe => {
+		const recipes = [ ...this.state.recipes ]
 		this.setState(() => ({
 			recipes: [
-				...recipes
+				...recipes,
+				newRecipe
 			]
 		}))
 	}

@@ -7,17 +7,21 @@ class FoldersList extends Component {
   static contextType = RecipeContext
 
   render() {
-    const { folders, filterFolders } = this.context;
+    // const { folders, filterFolders } = this.context
 
     return (
       <>
-        <Button className="folder-item" onClick={() => filterFolders(null)}>View All</Button>
+        <Button
+          // onClick={() => this.context.filterFolders(null)}
+          className="folder-item">
+          View All
+        </Button>
         {
-          folders.map(folder => {
+          this.context.folders.map(folder => {
             return (
               <Button
+                // onClick={() => this.context.filterFolders(folder.id)}
                 className="folder-item"
-                onClick={() => filterFolders(folder.id)}
                 key={folder.id}
                 value={folder.folder_name}>
                 {folder.folder_name}

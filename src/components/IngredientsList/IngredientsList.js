@@ -1,20 +1,32 @@
 import React, { Component } from 'react'
 import RecipeContext from '../../contexts/RecipeContext'
 import './IngredientsList.css'
+import config from '../../config'
 
 class IngredientsList extends Component {
   static contextType = RecipeContext
 
-  render() {
-    let recipeId = this.props.recipeId
-    let recipe = this.context.recipes.filter(recipe => recipe.id === recipeId)[0]
+  state = {
+    ingredients: []
+  }
 
+  componentDidMount() {
+    fetch(config.API_ENDPOINT + `/recipes/${this.props.recipeId}/ingredients`)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          ingredients: responseJson
+        })
+      })
+  }
+
+  render() {
     return (
       <ul>
-        {recipe.ingredients.map(ing => {
+        {this.state.ingredients.map(ing => {
             return (
               ing.item.length >= 1
-              ? <li key={ing.id}>{ing.item}</li>
+              ? <li key={ing.id}>{ing.quantity + ' '}{ing.unit + ' '}{ing.item}</li>
               : <li className="blank-li" key={ing.id}></li>
             )
           })}

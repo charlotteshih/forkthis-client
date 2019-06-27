@@ -8,10 +8,8 @@ import './RecipeCard.css'
 
 class RecipeCard extends Component {
   static contextType = RecipeContext
-  
-  render() {
-    // console.log('this.context', this.context)
 
+  render() {
     return (
       <>
         {
@@ -21,15 +19,9 @@ class RecipeCard extends Component {
                 recipe={recipe}
                 className="recipe-card"
                 key={recipe.id}>
-                <h3><Link to={`recipe/${recipe.id}`}>{recipe.name}</Link></h3>
-                <p>
-                  Folder:&nbsp;
-                  {
-                    this.context.folders
-                      .filter(folder => folder.id === recipe.folder_id)
-                      .map(folder => folder.folder_name)
-                  }
-                </p>
+                <h3><Link to={`recipe/${recipe.id}`}>{recipe.title}</Link></h3>
+                <p>By: {recipe.author.nickname}</p>
+                <p>Folder: {recipe.folder.name}</p>
                 {/* <EditDelete recipe={recipe} /> */}
               </Section>
             )
