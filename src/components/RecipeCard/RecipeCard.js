@@ -20,7 +20,6 @@ class RecipeCard extends Component {
                 className="recipe-card"
                 key={recipe.id}>
                 <h3><Link to={`recipe/${recipe.id}`}>{recipe.title}</Link></h3>
-                <p>By: {recipe.author.nickname}</p>
                 <p>Folder: {recipe.folder.name}</p>
                 {/* <EditDelete recipe={recipe} /> */}
               </Section>
