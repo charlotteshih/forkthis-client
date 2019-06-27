@@ -1,22 +1,49 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
-// import { Section } from '../../components/Utils/Utils'
+import { Link } from 'react-router-dom'
+import { Section } from '../../components/Utils/Utils'
 import './FolderPage.css'
 import RecipeContext from '../../contexts/RecipeContext'
 
-import Sidebar from '../../components/Sidebar/Sidebar'
-import RecipeList from '../../components/RecipeList/RecipeList'
+// import EditDelete from '../EditDelete/EditDelete'
 
 class FolderPage extends Component {
   static contextType = RecipeContext
 
   render() {
-    // const folderId = parseInt(this.props.match.params.folderId)
+    let folderId = parseInt(this.props.match.params.folderId)
+
+    let showFolderName = () => this.context.folders
+    .filter(folder => folder.id === folderId)
+    .map(folder => {
+      return <h2 key={folderId}>{folder.folder_name}</h2>
+    })
+    
+    let showRecipes = recipes => {
+      return recipes
+        .filter(recipe => recipe.folder_id === folderId)
+        .map(recipe => {
+          return (
+            <Section
+              id={recipe.id}
+              recipe={recipe}
+              className="recipe-card"
+              key={recipe.id}>
+              <h3><Link to={`../recipe/${recipe.id}`}>{recipe.title}</Link></h3>
+              <p>
+                  Folder:&nbsp;
+                  {this.context.folders
+                      .filter(folder => folder.id === recipe.folder_id)
+                      .map(folder => folder.folder_name)}
+              </p>
+              {/* <EditDelete recipe={recipe} /> */}
+            </Section>
+          )
+        })
+    }
     return (
       <>
-        <h2>Your Cookbook</h2>
-          <Sidebar />
-          <RecipeList />
+        {showFolderName()}
+        {showRecipes(this.context.recipes)}
       </>
     )
   }

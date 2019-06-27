@@ -17,18 +17,18 @@ class RecipePage extends Component {
     let recipe = this.context.recipes.filter(recipe => recipe.id === recipeId)
 
     return (
-      <Section className="cookbook">
+      <>
         <Section className="recipe-ingredients">
+          <BackButton history={history} />
           <h2>Ingredients</h2>
           <IngredientsList recipeId={recipeId} />
         </Section>
         <Section className="recipe-steps">
-          <BackButton history={history} />
           <h2>{recipe.name}</h2>
           <h2>Steps</h2>
           <StepsList recipeId={recipeId} />
         </Section>
-      </Section>
+      </>
     )
   }
 }

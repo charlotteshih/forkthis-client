@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Section } from '../../components/Utils/Utils'
+import RecipeContext from '../../contexts/RecipeContext'
 import './Cookbook.css'
 
-import Sidebar from '../../components/Sidebar/Sidebar'
-import RecipeList from '../../components/RecipeList/RecipeList'
+// import EditDelete from '../EditDelete/EditDelete'
 
-function Cookbook() {
-  return (
-    <>
-      <h2>Your Cookbook</h2>
-      <Section className="cookbook">
-        <Sidebar />
-        <RecipeList />
-      </Section>
-    </>
-  )
+class Cookbook extends Component {
+  static contextType = RecipeContext
+
+  render() {
+    return (
+      <>
+        {
+          this.context.recipes.map(recipe => {
+            return (
+              <Section
+                id={recipe.id}
+                recipe={recipe}
+                className="recipe-card"
+                key={recipe.id}>
+                <h3><Link to={`recipe/${recipe.id}`}>{recipe.title}</Link></h3>
+                <p>
+                  Folder:&nbsp;
+                  {this.context.folders
+                      .filter(folder => folder.id === recipe.folder_id)
+                      .map(folder => folder.folder_name)}
+                </p>
+                {/* <EditDelete recipe={recipe} /> */}
+              </Section>
+            )
+          })
+        }
+      </>
+    )
+  }
 }
 
 export default Cookbook

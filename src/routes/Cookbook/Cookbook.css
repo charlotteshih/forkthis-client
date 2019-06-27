@@ -1,3 +1,7 @@
-.cookbook {
-  display: flex;
+.recipe-card {
+  width: 300px;
+  margin: 15px;
+  padding: 30px;
+
+  outline: 1px solid turquoise;
 }
