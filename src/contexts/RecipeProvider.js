@@ -70,7 +70,7 @@ class RecipeProvider extends Component {
 			.catch()
 	}
 
-	postNewIngs = ({ recipe_id, quantity, unit, item }, recipeId) => {
+	postNewIngs = ({ quantity, unit, item }, recipeId) => {
 		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/ingredients`, {
 			method: 'POST',
 			headers: {
@@ -84,11 +84,10 @@ class RecipeProvider extends Component {
 			})
 		})
 			.then(response => response.json())
-			// .then(responseJson => this.addNewIngs(responseJson))
 			.catch()
 	}
 
-	postNewSteps = ( { recipe_id, sort_order, step }, recipeId) => {
+	postNewSteps = ( { sort_order, step }, recipeId) => {
 		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/steps`, {
 			method: 'POST',
 			headers: {
@@ -101,7 +100,6 @@ class RecipeProvider extends Component {
 			})
 		})
 			.then(response => response.json())
-			// .then(responseJson => this.addNewSteps(responseJson))
 			.catch()
 	}
 

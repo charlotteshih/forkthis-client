@@ -95,6 +95,7 @@ class AddRecipeForm extends Component {
 				...prevState.ingredients,
 				{
 					id: prevState.ingredients.length + 1,
+					recipe_id: this.state.id,
 					quantity,
 					unit,
 					item
@@ -111,6 +112,7 @@ class AddRecipeForm extends Component {
 				...prevState.steps,
 				{
 					id: prevState.steps.length + 1,
+					recipe_id: this.state.id,
 					sort_order,
 					step: ''
 				}
