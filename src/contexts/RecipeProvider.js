@@ -29,18 +29,6 @@ class RecipeProvider extends Component {
 			})
 	}
 
-	// this doesn't work anymore. just have each folder button go to its own route
-	// filterFolders = id => {
-	// 	let recipes = this.state.recipes
-	// 	console.log(id)
-	// 	console.log(recipes)
-	// 	this.setState({
-	// 		recipes: id === null
-	// 		? recipes
-	// 		: recipes.find(recipe => id === recipe.folder_id)
-	// 	})
-	// }
-
 	postNewFolder = folder_name => {
 		fetch(config.API_ENDPOINT + `/folders`, {
 			method: 'POST',
@@ -66,18 +54,54 @@ class RecipeProvider extends Component {
 		}))
 	}
 
-	postNewRecipe = newRecipe => {
+	postNewRecipe = ({ title, folder_id }) => {
 		fetch(config.API_ENDPOINT + `/recipes`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
-				newRecipe,
+				title,
+				folder_id
 			})
 		})
 			.then(response => response.json())
 			.then(responseJson => this.addNewRecipe(responseJson))
+			.catch()
+	}
+
+	postNewIngs = ({ recipe_id, quantity, unit, item }, recipeId) => {
+		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/ingredients`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
+			body: JSON.stringify({
+				recipe_id: recipeId,
+				quantity,
+				unit,
+				item
+			})
+		})
+			.then(response => response.json())
+			// .then(responseJson => this.addNewIngs(responseJson))
+			.catch()
+	}
+
+	postNewSteps = ( { recipe_id, sort_order, step }, recipeId) => {
+		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/steps`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
+			body: JSON.stringify({
+				recipe_id: recipeId,
+				sort_order,
+				step
+			})
+		})
+			.then(response => response.json())
+			// .then(responseJson => this.addNewSteps(responseJson))
 			.catch()
 	}
 
@@ -97,7 +121,9 @@ class RecipeProvider extends Component {
 			recipes: this.state.recipes,
 			filterFolders: this.filterFolders,
 			postNewFolder: this.postNewFolder,
-			postNewRecipe: this.postNewRecipe
+			postNewRecipe: this.postNewRecipe,
+			postNewIngs: this.postNewIngs,
+			postNewSteps: this.postNewSteps
 		}
 		return (
 			<RecipeContext.Provider value={context}>

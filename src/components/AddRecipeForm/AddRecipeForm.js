@@ -8,42 +8,29 @@ class AddRecipeForm extends Component {
 
 	state = {
 		id: '',
-		name: '',
+		title: '',
+		folder_id: '',
 		ingredients: [
 			{
 				id: 1,
-				item: ''
-			},
-			{
-				id: 2,
-				item: ''
-			},
-			{
-				id: 3,
+				quantity: '',
+				unit: '',
 				item: ''
 			}
 		],
 		steps: [
 			{
 				id: 1,
-				step: ''
-			},
-			{
-				id: 2,
-				step: ''
-			},
-			{
-				id: 3,
+				sort_order: '',
 				step: ''
 			}
 		],
-		folder_id: '',
 	}
 
 	handleNameChange = e => {
 		this.setState({
 			id: this.context.recipes.length + 1,
-			name: e.target.value.trim()
+			title: e.target.value.trim()
 		})
 	}
 
@@ -53,7 +40,29 @@ class AddRecipeForm extends Component {
 		})
 	}
 
-	handleIngredientInput = e => {
+	handleQtyInput = e => {
+		let ing_id = parseInt(e.target.id)
+		let ing_qty = e.target.value.trim()
+
+		let newIng = this.state.ingredients.find(item => {
+			return item.id === ing_id
+		})
+		
+		newIng.quantity = ing_qty
+	}
+
+	handleUnitInput = e => {
+		let ing_id = parseInt(e.target.id)
+		let ing_unit = e.target.value.trim()
+
+		let newIng = this.state.ingredients.find(item => {
+			return item.id === ing_id
+		})
+		
+		newIng.unit = ing_unit
+	}
+
+	handleIngInput = e => {
 		let ing_id = parseInt(e.target.id)
 		let ing_item = e.target.value.trim()
 
@@ -73,16 +82,22 @@ class AddRecipeForm extends Component {
 		})
 		
 		newStep.step = step_item
+		newStep.sort_order = step_id
 	}
 
-	addIngredientInput = e => {
+	addIngInput = e => {
 		e.preventDefault()
+		let quantity = ''
+		let unit = ''
+		let item = ''
 		this.setState(prevState => ({
 			ingredients: [
 				...prevState.ingredients,
 				{
 					id: prevState.ingredients.length + 1,
-					item: ''
+					quantity,
+					unit,
+					item
 				}
 			]
 		}))
@@ -90,11 +105,13 @@ class AddRecipeForm extends Component {
 
 	addStepInput = e => {
 		e.preventDefault()
+		let sort_order = e.target.id
 		this.setState(prevState => ({
 			steps: [
 				...prevState.steps,
 				{
 					id: prevState.steps.length + 1,
+					sort_order,
 					step: ''
 				}
 			]
@@ -103,39 +120,41 @@ class AddRecipeForm extends Component {
 
 	handleSubmitRecipe = e => {
 		e.preventDefault()
-		this.context.postNewRecipe(this.state)
+		let { id, title, folder_id, ingredients, steps } = this.state
+		let newRecipe = { id, title, folder_id }
+		let newIngs = { ingredients }
+		let newSteps = { steps }
+		let recipeId = this.state.id
+
+		console.log('newIngs', newIngs.ingredients)
+		console.log('newSteps', newSteps.steps)
+
+		this.context.postNewRecipe(newRecipe)
+		setTimeout(this.context.postNewIngs(newIngs, recipeId), 100)
+		setTimeout(this.context.postNewSteps(newSteps, recipeId), 100)
+
+		// Promise.all([ promise1, promise2, promise3 ])
+		// 	.then(values => console.log(values))
+
 		this.clearForm()
 	}
 
 	clearForm = () => {
     this.setState({
 			id: '',
-			name: '',
+			title: '',
 			ingredients: [
 				{
 					id: 1,
-					item: ''
-				},
-				{
-					id: 2,
-					item: ''
-				},
-				{
-					id: 3,
+					quantity: '',
+					unit: '',
 					item: ''
 				}
 			],
 			steps: [
 				{
 					id: 1,
-					step: ''
-				},
-				{
-					id: 2,
-					step: ''
-				},
-				{
-					id: 3,
+					sort_order: '',
 					step: ''
 				}
 			],
@@ -144,8 +163,7 @@ class AddRecipeForm extends Component {
   }
 
 	render() {
-		let { ingredients, steps } = this.state
-
+		let { ingredients, steps }  = this.state
 		return (
 			<form
 				className="add-recipe-form"
@@ -186,7 +204,20 @@ class AddRecipeForm extends Component {
 							return (
 								<li key={ing.id}>
 									<Input
-										onChange={this.handleIngredientInput}
+										className="ingredient-input quantity"
+										onChange={this.handleQtyInput}
+										type="text"
+										id={`${ing.id}`}
+										name="recipe_ingredients" />
+									<Input
+										className="ingredient-input unit"
+										onChange={this.handleUnitInput}
+										type="text"
+										id={`${ing.id}`}
+										name="recipe_ingredients" />
+									<Input
+										className="ingredient-input item"
+										onChange={this.handleIngInput}
 										type="text"
 										id={`${ing.id}`}
 										name="recipe_ingredients" />
@@ -196,7 +227,7 @@ class AddRecipeForm extends Component {
 					}
 					</ul>
 					<Button
-						onClick={this.addIngredientInput}
+						onClick={this.addIngInput}
 						className="add-ingredient-button">
 						+ Add Ingredient
 					</Button>
@@ -209,9 +240,8 @@ class AddRecipeForm extends Component {
 						steps.map(step => {
 							return (
 								<li key={step.id}>
-									<Input
+									<textarea
 										onChange={this.handleStepInput}
-										type="text"
 										id={`${step.id}`}
 										name="recipe_steps" />
 								</li>

@@ -14,9 +14,24 @@
 }
 
 .add-recipe-form input {
+    max-width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.add-recipe-form textarea {
+    font-family: sans-serif;
     width: 100%;
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.ingredient-input {
+    display: inline;
+}
+
+.quantity {
+    width: 50px;
 }
 
 .folder-dropdown {
