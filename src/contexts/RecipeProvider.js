@@ -72,13 +72,14 @@ class RecipeProvider extends Component {
 		}))
 	}
 
-	postNewRecipe = ({ title, folder_id }) => {
+	postNewRecipe = ({ id, title, folder_id }) => {
 		fetch(config.API_ENDPOINT + `/recipes`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
+				id,
 				title,
 				folder_id
 			})
@@ -88,38 +89,37 @@ class RecipeProvider extends Component {
 			.catch()
 	}
 
-	postNewIngs = ({ recipe_id, quantity, unit, item }) => {
-		fetch(config.API_ENDPOINT + `/ingredients`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'Application/json'
-			},
-			body: JSON.stringify({
-				recipe_id,
-				quantity,
-				unit,
-				item
+	postNewIngs = newIngs => {
+		newIngs.forEach(ing => {
+			fetch(config.API_ENDPOINT + `/ingredients`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'Application/json'
+				},
+				body: JSON.stringify({
+					ing
+				})
 			})
+				.then(response => response.json())
+				.catch()
 		})
-			.then(response => response.json())
-			.catch()
 	}
 
-	// postNewSteps = ({ recipe_id, sort_order, step }) => {
-	// 	fetch(config.API_ENDPOINT + `/steps`, {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'Application/json'
-	// 		},
-	// 		body: JSON.stringify({
-	// 			recipe_id,
-	// 			sort_order,
-	// 			step
-	// 		})
-	// 	})
-	// 		.then(response => response.json())
-	// 		.catch()
-	// }
+	postNewSteps = newSteps => {
+		newSteps.forEach(step => {
+			fetch(config.API_ENDPOINT + `/steps`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'Application/json'
+				},
+				body: JSON.stringify({
+					step
+				})
+			})
+				.then(response => response.json())
+				.catch()
+		})
+	}
 
 	addNewRecipe = newRecipe => {
 		const recipes = [ ...this.state.recipes ]

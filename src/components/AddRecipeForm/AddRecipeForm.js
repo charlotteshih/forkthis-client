@@ -126,24 +126,15 @@ class AddRecipeForm extends Component {
 
 	handleSubmitRecipe = e => {
 		e.preventDefault()
-		let {
-			id,
-			title,
-			folder_id,
-			ingredients,
-			// steps
-		} = this.state
+		let { id, title, folder_id, ingredients, steps } = this.state
+		
 		let newRecipe = { id, title, folder_id }
-		let newIngs = { ingredients }
-		// let newSteps = { steps }
-
-		// console.log('newRecipe', newRecipe)
-		// console.log('newIngs', newIngs.ingredients)
-		// console.log('newSteps', newSteps.steps)
+		let newIngs = ingredients
+		let newSteps = steps
 
 		this.context.postNewRecipe(newRecipe)
-		this.context.postNewIngs(newIngs.ingredients)
-		// this.context.postNewSteps(newSteps.steps)
+		this.context.postNewIngs(newIngs)
+		this.context.postNewSteps(newSteps)
 
 		this.clearForm()
 	}
