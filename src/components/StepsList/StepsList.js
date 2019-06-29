@@ -10,7 +10,7 @@ class StepsList extends Component {
   }
 
   componentDidMount() {
-    fetch(config.API_ENDPOINT + `/recipes/${this.props.recipeId}/steps`)
+    fetch(config.API_ENDPOINT + `/steps/${this.props.recipeId}`)
       .then(response => response.json())
       .then(responseJson => {
         this.setState({
@@ -25,8 +25,8 @@ class StepsList extends Component {
         {this.state.steps.map(step => {
             return (
               step.step.length > 1
-              ? <li key={step.order}>{step.step}</li>
-              : <li className="blank-li" key={step.order}></li>
+              ? <li key={step.id}>{step.step}</li>
+              : <li className="blank-li" key={step.id}></li>
             )
           })}
       </ol>

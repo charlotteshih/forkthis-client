@@ -13,6 +13,7 @@ class AddRecipeForm extends Component {
 		ingredients: [
 			{
 				id: 1,
+				recipe_id: '',
 				quantity: '',
 				unit: '',
 				item: ''
@@ -21,6 +22,7 @@ class AddRecipeForm extends Component {
 		steps: [
 			{
 				id: 1,
+				recipe_id: '',
 				sort_order: '',
 				step: ''
 			}
@@ -71,6 +73,7 @@ class AddRecipeForm extends Component {
 		})
 		
 		newIng.item = ing_item
+		newIng.recipe_id = this.state.id
 	}
 
 	handleStepInput = e => {
@@ -83,6 +86,7 @@ class AddRecipeForm extends Component {
 		
 		newStep.step = step_item
 		newStep.sort_order = step_id
+		newStep.recipe_id = this.state.id
 	}
 
 	addIngInput = e => {
@@ -122,21 +126,24 @@ class AddRecipeForm extends Component {
 
 	handleSubmitRecipe = e => {
 		e.preventDefault()
-		let { id, title, folder_id, ingredients, steps } = this.state
+		let {
+			id,
+			title,
+			folder_id,
+			ingredients,
+			// steps
+		} = this.state
 		let newRecipe = { id, title, folder_id }
 		let newIngs = { ingredients }
-		let newSteps = { steps }
-		let recipeId = this.state.id
+		// let newSteps = { steps }
 
-		console.log('newIngs', newIngs.ingredients)
-		console.log('newSteps', newSteps.steps)
+		// console.log('newRecipe', newRecipe)
+		// console.log('newIngs', newIngs.ingredients)
+		// console.log('newSteps', newSteps.steps)
 
 		this.context.postNewRecipe(newRecipe)
-		setTimeout(this.context.postNewIngs(newIngs, recipeId), 100)
-		setTimeout(this.context.postNewSteps(newSteps, recipeId), 100)
-
-		// Promise.all([ promise1, promise2, promise3 ])
-		// 	.then(values => console.log(values))
+		this.context.postNewIngs(newIngs.ingredients)
+		// this.context.postNewSteps(newSteps.steps)
 
 		this.clearForm()
 	}
@@ -148,6 +155,7 @@ class AddRecipeForm extends Component {
 			ingredients: [
 				{
 					id: 1,
+					recipe_id: '',
 					quantity: '',
 					unit: '',
 					item: ''
@@ -156,6 +164,7 @@ class AddRecipeForm extends Component {
 			steps: [
 				{
 					id: 1,
+					recipe_id: '',
 					sort_order: '',
 					step: ''
 				}

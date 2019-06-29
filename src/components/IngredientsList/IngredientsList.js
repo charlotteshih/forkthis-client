@@ -11,7 +11,7 @@ class IngredientsList extends Component {
   }
 
   componentDidMount() {
-    fetch(config.API_ENDPOINT + `/recipes/${this.props.recipeId}/ingredients`)
+    fetch(config.API_ENDPOINT + `/ingredients/${this.props.recipeId}`)
       .then(response => response.json())
       .then(responseJson => {
         this.setState({

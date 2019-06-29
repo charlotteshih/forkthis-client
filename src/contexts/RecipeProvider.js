@@ -7,7 +7,9 @@ class RecipeProvider extends Component {
 		super(props)
 		this.state = {
 			folders: [],
-			recipes: []
+			recipes: [],
+			// ingredients: [],
+			// steps: []
 		}
 	}
 
@@ -27,6 +29,22 @@ class RecipeProvider extends Component {
 					recipes: responseJson
 				})
 			})
+		
+		// fetch(config.API_ENDPOINT, `/ingredients`)
+		// 	.then(response => response.json())
+		// 	.then(responseJson => {
+		// 		this.setState({
+		// 			ingredients: responseJson
+		// 		})
+		// 	})
+
+		// fetch(config.API_ENDPOINT, `/steps`)
+		// 	.then(response => response.json())
+		// 	.then(responseJson => {
+		// 		this.setState({
+		// 			steps: responseJson
+		// 		})
+		// 	})
 	}
 
 	postNewFolder = folder_name => {
@@ -70,14 +88,14 @@ class RecipeProvider extends Component {
 			.catch()
 	}
 
-	postNewIngs = ({ quantity, unit, item }, recipeId) => {
-		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/ingredients`, {
+	postNewIngs = ({ recipe_id, quantity, unit, item }) => {
+		fetch(config.API_ENDPOINT + `/ingredients`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
-				recipe_id: recipeId,
+				recipe_id,
 				quantity,
 				unit,
 				item
@@ -87,21 +105,21 @@ class RecipeProvider extends Component {
 			.catch()
 	}
 
-	postNewSteps = ( { sort_order, step }, recipeId) => {
-		fetch(config.API_ENDPOINT + `/recipes/${recipeId}/steps`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'Application/json'
-			},
-			body: JSON.stringify({
-				recipe_id: recipeId,
-				sort_order,
-				step
-			})
-		})
-			.then(response => response.json())
-			.catch()
-	}
+	// postNewSteps = ({ recipe_id, sort_order, step }) => {
+	// 	fetch(config.API_ENDPOINT + `/steps`, {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'Application/json'
+	// 		},
+	// 		body: JSON.stringify({
+	// 			recipe_id,
+	// 			sort_order,
+	// 			step
+	// 		})
+	// 	})
+	// 		.then(response => response.json())
+	// 		.catch()
+	// }
 
 	addNewRecipe = newRecipe => {
 		const recipes = [ ...this.state.recipes ]
