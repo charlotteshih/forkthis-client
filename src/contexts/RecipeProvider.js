@@ -8,8 +8,6 @@ class RecipeProvider extends Component {
 		this.state = {
 			folders: [],
 			recipes: [],
-			// ingredients: [],
-			// steps: []
 		}
 	}
 
@@ -29,22 +27,6 @@ class RecipeProvider extends Component {
 					recipes: responseJson
 				})
 			})
-		
-		// fetch(config.API_ENDPOINT, `/ingredients`)
-		// 	.then(response => response.json())
-		// 	.then(responseJson => {
-		// 		this.setState({
-		// 			ingredients: responseJson
-		// 		})
-		// 	})
-
-		// fetch(config.API_ENDPOINT, `/steps`)
-		// 	.then(response => response.json())
-		// 	.then(responseJson => {
-		// 		this.setState({
-		// 			steps: responseJson
-		// 		})
-		// 	})
 	}
 
 	postNewFolder = folder_name => {
