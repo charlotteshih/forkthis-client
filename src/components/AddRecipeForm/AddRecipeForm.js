@@ -29,6 +29,8 @@ class AddRecipeForm extends Component {
 		],
 		titleValid: false,
 		titleValidation: '',
+		folderValid: false,
+		folderValidation: '',
 		formPosted: false,
 		successMessage: ''
 	}
@@ -42,9 +44,10 @@ class AddRecipeForm extends Component {
 	}
 
 	handleSelectFolder = e => {
+		let folderInput = parseInt(e.target.value)
 		this.setState({
-			folder_id: parseInt(e.target.value)
-		})
+			folder_id: folderInput
+		}, this.validateFolder(folderInput))
 	}
 
 	handleQtyInput = e => {
@@ -143,7 +146,7 @@ class AddRecipeForm extends Component {
 
 		this.setState({
 			formPosted: true,
-			successMessage: 'Hooray! Your recipe has been created.'
+			successMessage: `Hooray! Your recipe has been created..`
 		})
 	}
 
@@ -172,6 +175,31 @@ class AddRecipeForm extends Component {
 		}
 	}
 
+	validateFolder = folder_id => {
+		let validation = this.state.folderValidation
+		let hasError = false
+		
+		if(validation === 0) {
+			hasError = true
+			validation = 'Please select a folder.'
+		} else {
+			validation = ''
+		}
+
+		this.setState({
+			folderValid: !hasError,
+			folderValidation: validation
+		}, this.folderValid(folder_id))
+	}
+
+	folderValid = folder_id => {
+		if (this.state.folder_id) {
+			this.setState({
+				folder_id: folder_id
+			})
+		}
+	}
+
 	render() {
 		let { ingredients, steps }  = this.state
 		return (
@@ -193,8 +221,8 @@ class AddRecipeForm extends Component {
 
 					<div className="folders">
 						<label htmlFor="folders">Folder: </label>
-						<select className="folder-dropdown" onChange={this.handleSelectFolder}>
-							<option>Please Select a Folder...</option>
+						<select className="folder-dropdown" onChange={this.handleSelectFolder} required>
+							<option value="">Please Select a Folder...</option>
 							{
 								this.context.folders.map(folder => {
 									return (

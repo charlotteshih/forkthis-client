@@ -5,3 +5,11 @@
 
   outline: 1px solid turquoise;
 }
+
+@media screen and (max-width: 887px) {
+  .recipe-card {
+    margin: 15 auto;
+    width: 90%;
+    flex-basis: 100%;
+  }
+}

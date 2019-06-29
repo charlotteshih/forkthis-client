@@ -4,8 +4,6 @@ import { Section } from '../../components/Utils/Utils'
 import './FolderPage.css'
 import RecipeContext from '../../contexts/RecipeContext'
 
-// import EditDelete from '../EditDelete/EditDelete'
-
 class FolderPage extends Component {
   static contextType = RecipeContext
 
@@ -15,7 +13,11 @@ class FolderPage extends Component {
     let showFolderName = () => this.context.folders
     .filter(folder => folder.id === folderId)
     .map(folder => {
-      return <h2 key={folderId}>{folder.folder_name}</h2>
+      return (
+        <Section className="folder-name">
+          <h2 key={folderId}>{folder.folder_name}</h2>
+        </Section>
+      )
     })
     
     let showRecipes = recipes => {
