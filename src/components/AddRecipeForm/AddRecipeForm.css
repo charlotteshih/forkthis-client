@@ -28,14 +28,31 @@
 
 .ingredient-input {
     display: inline;
+    width: 300px;
 }
 
 .quantity {
-    width: 50px;
+    width: 100px;
+}
+
+.unit {
+    width: 100px;
+}
+
+.item {
+    width: 300px;
 }
 
 .folder-dropdown {
 	width: 100%;
 	padding: 5px;
 	font-size: 0.9rem;
+}
+
+.error-box {
+    color: red;
+}
+
+.form-posted {
+    color: green;
 }

@@ -4,8 +4,6 @@ import { Section } from '../../components/Utils/Utils'
 import RecipeContext from '../../contexts/RecipeContext'
 import './Cookbook.css'
 
-// import EditDelete from '../EditDelete/EditDelete'
-
 class Cookbook extends Component {
   static contextType = RecipeContext
 
@@ -27,7 +25,6 @@ class Cookbook extends Component {
                       .filter(folder => folder.id === recipe.folder_id)
                       .map(folder => folder.folder_name)}
                 </p>
-                {/* <EditDelete recipe={recipe} /> */}
               </Section>
             )
           })

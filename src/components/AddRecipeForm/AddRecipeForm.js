@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RecipeContext from '../../contexts/RecipeContext'
-import { Button, Input } from '../Utils/Utils'
+import { Button, Input, Section } from '../Utils/Utils'
 import './AddRecipeForm.css'
 
 class AddRecipeForm extends Component {
@@ -27,13 +27,18 @@ class AddRecipeForm extends Component {
 				step: ''
 			}
 		],
+		titleValid: false,
+		titleValidation: '',
+		formPosted: false,
+		successMessage: ''
 	}
 
 	handleNameChange = e => {
+		let titleInput = e.target.value.trim()
 		this.setState({
 			id: this.context.recipes.length + 1,
-			title: e.target.value.trim()
-		})
+			title: titleInput
+		}, this.validateTitle(titleInput))
 	}
 
 	handleSelectFolder = e => {
@@ -136,133 +141,153 @@ class AddRecipeForm extends Component {
 		this.context.postNewIngs(newIngs)
 		this.context.postNewSteps(newSteps)
 
-		this.clearForm()
+		this.setState({
+			formPosted: true,
+			successMessage: 'Hooray! Your recipe has been created.'
+		})
 	}
 
-	clearForm = () => {
-    this.setState({
-			id: '',
-			title: '',
-			ingredients: [
-				{
-					id: 1,
-					recipe_id: '',
-					quantity: '',
-					unit: '',
-					item: ''
-				}
-			],
-			steps: [
-				{
-					id: 1,
-					recipe_id: '',
-					sort_order: '',
-					step: ''
-				}
-			],
-			folder_id: '',
-    })
-  }
+	validateTitle = title => {
+		let validation = this.state.titleValidation
+		let hasError = false
+
+		if (title.length === 0) {
+			hasError = true
+			validation = 'Title cannot be blank.'
+		} else {
+			validation = ''
+		}
+
+		this.setState({
+			titleValid: !hasError,
+			titleValidation: validation
+		}, this.titleValid(title))
+	}
+
+	titleValid = title => {
+		if (this.state.title) {
+			this.setState({
+				title: title
+			})
+		}
+	}
 
 	render() {
 		let { ingredients, steps }  = this.state
 		return (
-			<form
-				className="add-recipe-form"
-				onSubmit={this.handleSubmitRecipe}>
-				<div className="name">
-					<label htmlFor="name">Name: </label>
-					<Input
-						onChange={this.handleNameChange}
-						type="text"
-						id="recipe_name"
-						name="recipe_name"
-						required />
-				</div>
+			<>
+				<form
+					className="add-recipe-form"
+					onSubmit={this.handleSubmitRecipe}>
+					<div className="name">
+						<label htmlFor="name">Name: </label>
+						<Input
+							className="ingredient-input"
+							onChange={this.handleNameChange}
+							type="text"
+							id="recipe_name"
+							name="recipe_name"
+							placeholder="i.e. Award-Winning 5-Alarm Chili"
+							required />
+					</div>
 
-				<div className="folders">
-					<label htmlFor="folders">Folder: </label>
-					<select className="folder-dropdown" onChange={this.handleSelectFolder}>
-						<option>Please Select a Folder...</option>
-						{
-							this.context.folders.map(folder => {
+					<div className="folders">
+						<label htmlFor="folders">Folder: </label>
+						<select className="folder-dropdown" onChange={this.handleSelectFolder}>
+							<option>Please Select a Folder...</option>
+							{
+								this.context.folders.map(folder => {
+									return (
+										<option
+											key={folder.id}
+											value={`${folder.id}`}>
+											{folder.folder_name}
+										</option>
+									)
+								})
+							}
+						</select>
+					</div>
+
+					<div className="ingredients">
+						<label htmlFor="ingredients">Ingredients: </label>
+						<ul>
+							{ingredients.map(ing => {
 								return (
-									<option
-										key={folder.id}
-										value={`${folder.id}`}>
-										{folder.folder_name}
-									</option>
+									<li key={ing.id}>
+										<Input
+											className="ingredient-input quantity"
+											onChange={this.handleQtyInput}
+											type="text"
+											id={`${ing.id}`}
+											placeholder="Quantity"
+											name="recipe_ingredients" />
+										<Input
+											className="ingredient-input unit"
+											onChange={this.handleUnitInput}
+											type="text"
+											id={`${ing.id}`}
+											placeholder="Unit"
+											name="recipe_ingredients" />
+										<Input
+											className="ingredient-input item"
+											onChange={this.handleIngInput}
+											type="text"
+											id={`${ing.id}`}
+											placeholder="Item"
+											name="recipe_ingredients" />
+									</li>
+								)
+							})}
+						</ul>
+						<Button
+							onClick={this.addIngInput}
+							className="add-ingredient-button">
+							+ Add Ingredient
+						</Button>
+					</div>
+
+					<div className="steps">
+						<label htmlFor="steps">Steps: </label>
+						<ol>
+						{
+							steps.map(step => {
+								return (
+									<li key={step.id}>
+										<textarea
+											onChange={this.handleStepInput}
+											id={`${step.id}`}
+											placeholder="1. Make food. 2. Eat food."
+											name="recipe_steps" />
+									</li>
 								)
 							})
 						}
-					</select>
-				</div>
+						</ol>
+						<Button
+							onClick={this.addStepInput}
+							className="add-step-button">
+							+ Add Step
+						</Button>
+					</div>
 
-				<div className="ingredients">
-					<label htmlFor="ingredients">Ingredients: </label>
-					<ul>
-					{
-						ingredients.map(ing => {
-							return (
-								<li key={ing.id}>
-									<Input
-										className="ingredient-input quantity"
-										onChange={this.handleQtyInput}
-										type="text"
-										id={`${ing.id}`}
-										name="recipe_ingredients" />
-									<Input
-										className="ingredient-input unit"
-										onChange={this.handleUnitInput}
-										type="text"
-										id={`${ing.id}`}
-										name="recipe_ingredients" />
-									<Input
-										className="ingredient-input item"
-										onChange={this.handleIngInput}
-										type="text"
-										id={`${ing.id}`}
-										name="recipe_ingredients" />
-								</li>
-							)
-						})
-					}
-					</ul>
 					<Button
-						onClick={this.addIngInput}
-						className="add-ingredient-button">
-						+ Add Ingredient
+						type="submit"
+						disabled={!this.state.titleValid}>
+							Create New Recipe
 					</Button>
-				</div>
+					<Button type="reset">Clear</Button>
+				</form>
 
-				<div className="steps">
-					<label htmlFor="steps">Steps: </label>
-					<ol>
-					{
-						steps.map(step => {
-							return (
-								<li key={step.id}>
-									<textarea
-										onChange={this.handleStepInput}
-										id={`${step.id}`}
-										name="recipe_steps" />
-								</li>
-							)
-						})
-					}
-					</ol>
-					<Button
-						onClick={this.addStepInput}
-						className="add-step-button">
-						+ Add Step
-					</Button>
-				</div>
-
-				<Button type="submit">
-						Create New Recipe
-				</Button>
-				<Button type="reset">Clear</Button>
-			</form>
+				<Section className="error-box">
+					{this.state.titleValidation}
+					{this.state.ingValidation}
+					{this.state.stepValidation}
+				</Section>
+				<Section className="form-posted">
+					{this.state.successMessage}
+				</Section>
+			</>
 		)
 	}
 }

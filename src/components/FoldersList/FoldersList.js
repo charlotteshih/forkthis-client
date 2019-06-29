@@ -8,7 +8,7 @@ class FoldersList extends Component {
 
   render() {
     return (
-      <>
+      <div className="folder-list">
         <Link
           to="/"
           className="folder-item">
@@ -25,7 +25,7 @@ class FoldersList extends Component {
               </Link>
             )
           })}
-      </>
+      </div>
     )
   }
 }

@@ -25,3 +25,50 @@
 
   outline: 1px solid teal;
 }
+
+.mobile-nav {
+  width: 100%;
+}
+
+.mobile-nav > .folder-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  outline: 1px solid yellow;
+}
+
+.mobile-nav > .folder-list > .folder-item {
+  width: 100px;
+  margin: 15px;
+  line-height: 3;
+}
+
+@media screen and (min-width: 887px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 887px) {
+  .recipe-card {
+    flex-basis: 100%;
+  }
+
+  .browser-nav {
+    display: none;
+  }
+
+  .cookbook {
+    flex-direction: column;
+  }
+
+  .recipe-list {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .recipe-list {
+    width: 100%;
+  }
+}

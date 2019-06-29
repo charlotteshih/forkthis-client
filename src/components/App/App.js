@@ -23,7 +23,10 @@ function App() {
         <AddRecipeButton />
 
         <Section className="cookbook">
-          <Section className="sidebar">
+          <Section className="sidebar browser-nav">
+            <Sidebar />
+          </Section>
+          <Section className="sidebar mobile-nav">
             <Sidebar />
           </Section>
           <Section className="recipe-list">
