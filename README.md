@@ -7,9 +7,9 @@ With **ForkThis!**, users can jot down recipes both old and new to an easy-to-us
 
 ## Front End
 
-**Live Client:** [Live Client ](https://forkthis-client.charlotteshih.now.sh/)
+**Live Client:** [https://forkthis-client.charlotteshih.now.sh/](https://forkthis-client.charlotteshih.now.sh/)
 
-**Repository:** [Repository](https://github.com/charlotteshih/forkthis-client)
+**Repository:** [https://github.com/charlotteshih/forkthis-client](https://github.com/charlotteshih/forkthis-client)
 
 **Stack:** React.js, HTML5/CSS3 with Flexbox
 
