@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import RecipeContext from '../../contexts/RecipeContext'
-import { Button, Input, Section } from '../Utils/Utils'
+import { Button, Input, Section, Textarea } from '../Utils/Utils'
 import './AddRecipeForm.css'
+import '../Utils/Utils.css'
 
 class AddRecipeForm extends Component {
 	static contextType = RecipeContext
@@ -282,7 +283,7 @@ class AddRecipeForm extends Component {
 							steps.map(step => {
 								return (
 									<li key={step.id}>
-										<textarea
+										<Textarea
 											onChange={this.handleStepInput}
 											id={`${step.id}`}
 											placeholder="1. Make food. 2. Eat food."

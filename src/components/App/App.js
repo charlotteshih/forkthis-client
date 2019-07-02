@@ -19,17 +19,15 @@ function App() {
   return (
     <BrowserRouter>
       <main className="App">
-        <Header />
-        <AddRecipeButton />
-
         <Section className="cookbook">
-          <Section className="sidebar browser-nav">
-            <Sidebar />
-          </Section>
-          <Section className="sidebar mobile-nav">
+          <Section className="sidebar">
             <Sidebar />
           </Section>
           <Section className="recipe-list">
+
+          <Header />
+          <AddRecipeButton />
+
             <Switch>
               <Route
                 exact path={'/'}
@@ -49,10 +47,11 @@ function App() {
               
               <Route component={PageNotFound} />
             </Switch>
+
+            <Footer />
+
           </Section>
         </Section>
-
-        <Footer />
       </main>
     </BrowserRouter>
   )

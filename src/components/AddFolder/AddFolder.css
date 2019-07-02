@@ -1,0 +1,24 @@
+.add-folder {
+  padding: 20px;
+  padding-right: 0px;
+  margin-bottom: 50px;
+}
+
+.add-folder input {
+  width: 100%;
+}
+
+.add-folder button {
+  display: block;
+  float: right;
+}
+
+@media screen and (max-width: 887px) {
+  .add-folder {
+    margin-bottom: 10px;
+  }
+
+  .add-folder button {
+    margin-right: -5px;
+  } 
+}

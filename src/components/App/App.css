@@ -3,8 +3,6 @@
   margin: 0 auto;
   position: relative;
   box-sizing: border-box;
-
-  outline: 1px solid red;
 }
 
 .cookbook {
@@ -13,46 +11,49 @@
 
 .sidebar {
   width: 20%;
-
-  outline: 1px solid green;
 }
 
 .recipe-list {
+  background-color: #faf6f4;
   position: relative;
   width: 80%;
+  padding: 20px;
   
   display: flex;
   flex-wrap: wrap;
-
-  outline: 1px solid teal;
 }
 
 .mobile-nav {
   width: 100%;
 }
 
-.mobile-nav > .folder-list {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  outline: 1px solid yellow;
-}
-
-.mobile-nav > .folder-list > .folder-item {
-  width: 100px;
-  margin: 15px;
-  line-height: 3;
-}
-
-@media screen and (min-width: 887px) {
-  .mobile-nav {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 887px) {
-  .browser-nav {
-    display: none;
+  .sidebar {
+    width: 100%;
+  }
+
+  .add-folder button {
+    display: inline;
+    float: none;
+  } 
+
+  .folder-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .sidebar h2 {
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .folder-list > .folder-item {
+    width: 150px;
+    margin: 5px;
+    line-height: 3;
+    padding: 0px 10px;
+    border-radius: 10px;
   }
 
   .cookbook {
@@ -68,4 +69,8 @@
   .recipe-list {
     width: 100%;
   }
+}
+
+li {
+  padding-left: 20px;
 }

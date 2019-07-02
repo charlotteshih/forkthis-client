@@ -1,16 +1,12 @@
 .recipe-ingredients {
   width: 25%;
   padding: 20px;
-
-  outline: 1px solid green;
 }
 
 .recipe-steps {
   position: relative;
   width: 75%;
   padding: 20px;
-
-  outline: 1px solid teal;
 }
 
 @media screen and (max-width: 887px) {

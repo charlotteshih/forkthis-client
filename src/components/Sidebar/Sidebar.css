@@ -1,3 +1,12 @@
 .sidebar {
-  padding: 10px;
+  padding: 20px;
+  padding-right: 11px;
+}
+
+.sidebar h2 {
+  font-weight: 200;
+  text-transform: uppercase;
+  padding-right: 20px;
+  margin-bottom: 0px;
+  text-align: right;
 }

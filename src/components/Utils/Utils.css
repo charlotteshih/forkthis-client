@@ -1,0 +1,43 @@
+.Button {
+  cursor: pointer;
+  font-size: 1rem;
+  display: inline-block;
+  margin: 0px 10px;
+  padding: 10px 25px;
+  color: #fafafa;
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  
+  background: rgb(121, 202, 149);
+
+  transition: all 0.5s ease;
+}
+
+.Button:hover, .Button:focus {
+  background: rgba(242,159,5,1);
+  background: linear-gradient(366deg, rgba(242,192,162,1) 0%, rgba(242,159,5,1) 50%, rgba(191,91,4,1) 100%);
+}
+
+.Button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+
+.Input {
+  padding: 10px;
+  margin: 5px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc
+}
+
+.Textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+}

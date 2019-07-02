@@ -1,4 +1,10 @@
 .recipe-header {
   flex-basis: 100%;
-  padding: 20px;
+  padding: 0px;
+  text-align: center;
+}
+
+.recipe-header h2 {
+  /* text-transform: uppercase; */
+  /* font-weight: 200; */
 }

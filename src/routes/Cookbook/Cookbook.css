@@ -3,7 +3,22 @@
   margin: 15px;
   padding: 30px;
 
-  outline: 1px solid turquoise;
+  background-color: #fafafa;
+  border-radius: 10px;
+}
+
+.recipe-card:hover {
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.1);
+}
+
+.recipe-card a {
+  color: #6ab9d9;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.recipe-card a:hover, .recipe-card a:focus {
+  color: #b6e1f2;
 }
 
 @media screen and (max-width: 887px) {
