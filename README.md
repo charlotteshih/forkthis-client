@@ -7,13 +7,17 @@ With **ForkThis!**, users can jot down recipes both old and new to an easy-to-us
 
 ## Front End
 
-**Live Client:** [https://forkthis-client.charlotteshih.now.sh/](https://forkthis-client.charlotteshih.now.sh/)
-**Repository:** https://github.com/charlotteshih/forkthis-client
+**Live Client:** [Live Client ](https://forkthis-client.charlotteshih.now.sh/)
+
+**Repository:** [Repository](https://github.com/charlotteshih/forkthis-client)
+
 **Stack:** React.js, HTML5/CSS3 with Flexbox
 
 ## Back End
-**Live API:** https://peaceful-reaches-42136.herokuapp.com/api
-**Repository:** https://github.com/charlotteshih/forkthis-api
+**Live API:** [https://peaceful-reaches-42136.herokuapp.com/api](https://peaceful-reaches-42136.herokuapp.com/api)
+
+**Repository:** [https://github.com/charlotteshih/forkthis-api](https://github.com/charlotteshih/forkthis-api)
+
 **Stack:** Node.js, Express, PostgreSQL
 
 ## Screenshots
