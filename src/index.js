@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // import serviceWorker from './serviceWorker'
-import App from './components/App/App'
+import App from './App'
 import './index.css'
 import RecipeProvider from './contexts/RecipeProvider'
 
